@@ -1,0 +1,40 @@
+package com.celestinolg.restAPI_sping_boot.controllers;
+
+import com.celestinolg.restAPI_sping_boot.model.Person;
+import com.celestinolg.restAPI_sping_boot.services.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+import java.awt.*;
+import java.util.List;
+
+@RestController
+@RequestMapping("/person")
+public class PersonControlloer {
+
+    @Autowired
+    private PersonService personService;
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Person findById(@PathVariable("id") String  id) {
+        return personService.findById(id);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Person> findAll() {
+        return personService.findAll();
+    }
+
+    @RequestMapping(
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Person create(@RequestBody  Person person) {
+        return personService.create(person);
+    }
+
+
+
+
+}

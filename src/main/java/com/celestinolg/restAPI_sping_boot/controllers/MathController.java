@@ -1,6 +1,6 @@
 package com.celestinolg.restAPI_sping_boot.controllers;
 
-import com.celestinolg.restAPI_sping_boot.exception.UnsuportedMathOperationException;
+import com.celestinolg.restAPI_sping_boot.exception.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +25,7 @@ public class MathController {
 
     @RequestMapping("/mult/{numberOne}/{numberTwo}")
     public Double mult(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo) throws Exception {
-        if (!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new UnsuportedMathOperationException("por favor, adicione o número válido");
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new ResourceNotFoundException("por favor, adicione o número válido");
         return convertToDouble(numberOne) * convertToDouble(numberTwo);
     }
 
@@ -36,7 +36,7 @@ public class MathController {
 
     @RequestMapping("/raiz/{number}")
     public Double raiz(@PathVariable("number") String number) throws Exception{
-        if (!isNumeric(number)) throw new UnsuportedMathOperationException("Invalid number");
+        if (!isNumeric(number)) throw new ResourceNotFoundException("Invalid number");
         return Math.sqrt(convertToDouble(number));
     }
 

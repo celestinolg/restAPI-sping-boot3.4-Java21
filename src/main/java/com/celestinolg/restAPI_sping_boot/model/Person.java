@@ -1,13 +1,31 @@
 package com.celestinolg.restAPI_sping_boot.model;
 
+import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Entity
+@Table(name = "person")
 public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private final AtomicLong counter = new AtomicLong();
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false, length = 80)
+    private String firstName;
+    @Column(nullable = false, length = 80)
+    private String lastName;
+    @Column(nullable = false, length = 6)
+    private String gender;
+    @Column(nullable = false, length = 100)
+    private String address;
+
 
     public Person() {}
 
@@ -17,13 +35,6 @@ public class Person implements Serializable {
         this.gender = gender;
         this.address = address;
     }
-
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private String gender;
-    private String address;
-
     public Long getId() {
         return id;
     }

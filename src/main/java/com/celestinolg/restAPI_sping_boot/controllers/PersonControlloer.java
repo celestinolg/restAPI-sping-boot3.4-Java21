@@ -49,8 +49,8 @@ public class PersonControlloer {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public boolean delete(@PathVariable("id") Long  id) {
-        return personService.delete(id);
+    public void delete(@PathVariable("id") Long  id) {
+        personService.delete(id);
     }
 
 
